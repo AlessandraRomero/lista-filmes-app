@@ -2,7 +2,7 @@
 
 Este projeto é uma aplicação Next.js que utiliza Tailwind CSS para estilização, Axios para requisições HTTP, Prisma como ORM para interagir com o banco de dados
 
-## Pré-requisitos
+## Pré-requisitos para rodar o projeto localmente
 
 Antes de começar, você precisará ter instalado em sua máquina:
 
