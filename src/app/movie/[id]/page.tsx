@@ -11,7 +11,7 @@ import { useFavorites } from '../../../../context/FavoritesContext';
 const MovieDetails = () => {
   const [movie, setMovie] = useState<any>(null);
   const [error, setError] = useState<string | null>(null);
-  const { favorites, addFavorite, removeFavorite } = useFavorites(); 
+  const { favorites, addFavorite, removeFavorite } = useFavorites();
 
   const params = useParams();
   const movieId = params.id as string;
@@ -35,7 +35,7 @@ const MovieDetails = () => {
     if (movieId) {
       fetchMovieDetails();
     }
-  }, [movieId]); 
+  }, [movieId]);
 
   const handleFavoriteClick = () => {
     try {
