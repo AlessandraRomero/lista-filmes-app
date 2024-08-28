@@ -1,36 +1,51 @@
-This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+# Lista de Filmes App
 
-## Getting Started
+Este projeto é uma aplicação Next.js que utiliza Tailwind CSS para estilização, Axios para requisições HTTP, Prisma como ORM para interagir com o banco de dados
 
-First, run the development server:
+## Pré-requisitos
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
-```
+Antes de começar, você precisará ter instalado em sua máquina:
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+- [Node.js](https://nodejs.org/) (versão 14.x ou superior)
+- [npm](https://www.npmjs.com/) ou [Yarn](https://yarnpkg.com/)
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+## Configuração do Ambiente
 
-This project uses [`next/font`](https://nextjs.org/docs/basic-features/font-optimization) to automatically optimize and load Inter, a custom Google Font.
+1. **Clone o Repositório**
 
-## Learn More
+  - git clone https://github.com/AlessandraRomero/lista-filmes-app.git
+  - cd lista-filmes-app
 
-To learn more about Next.js, take a look at the following resources:
+2. **Instalar Dependências**
+   
+   - npm install
+    # ou
+   - yarn install
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+3. **Configurar o Banco de Dados PostgreSQL**
+   
+   - crie um novo bancao de dados
+   - Anote o nome do banco de dados, o usuário e a senha, pois você precisará dessas informações no próximo passo.
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js/) - your feedback and contributions are welcome!
+4. **Configurar Variáveis de Ambiente**
+   
+   - Crie um arquivo .env na raiz do projeto e adicione as seguintes variáveis de ambiente:
 
-## Deploy on Vercel
+   - DATABASE_URL="postgresql://usuario:senha@localhost:5432/nome_do_banco_de_dados"
+   - TMDB_API_KEY="sua-chave-tmdb"
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
+    TMDB_API_KEY: Sua chave da API do TMDB, que pode ser obtida site da [The Movie Database](https://www.themoviedb.org/?language=pt-br) 
+
+5. **Configurar Prisma**
+   - execute o comando para aplicar as migrações e gerar o cliente Prisma:
+
+     npx prisma migrate dev --name init
+
+6. **Executar o Projeto**    
+
+   - npm run dev
+      # ou
+   - yarn dev
+
+   O projeto estará disponível em http://localhost:3000.
