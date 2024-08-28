@@ -18,34 +18,34 @@ Antes de começar, você precisará ter instalado em sua máquina:
 
 2. **Instalar Dependências**
    
-   - npm install
+  - npm install
      ou
-   - yarn install
+  - yarn install
 
 3. **Configurar o Banco de Dados PostgreSQL**
    
-   - crie um novo bancao de dados
-   - Anote o nome do banco de dados, o usuário e a senha, pois você precisará dessas informações no próximo passo.
+  - crie um novo bancao de dados
+  - Anote o nome do banco de dados, o usuário e a senha, pois você precisará dessas informações no próximo passo.
 
 4. **Configurar Variáveis de Ambiente**
    
-   - Crie um arquivo .env na raiz do projeto e adicione as seguintes variáveis de ambiente:
+  - Crie um arquivo .env na raiz do projeto e adicione as seguintes variáveis de ambiente:
 
-   - DATABASE_URL="postgresql://usuario:senha@localhost:5432/nome_do_banco_de_dados"
-   - TMDB_API_KEY="sua-chave-tmdb"
+  - DATABASE_URL="postgresql://usuario:senha@localhost:5432/nome_do_banco_de_dados"
+  - TMDB_API_KEY="sua-chave-tmdb"
 
 
     TMDB_API_KEY: Sua chave da API do TMDB, que pode ser obtida site da [The Movie Database](https://www.themoviedb.org/?language=pt-br) 
 
 5. **Configurar Prisma**
-   - execute o comando para aplicar as migrações e gerar o cliente Prisma:
+  - execute o comando para aplicar as migrações e gerar o cliente Prisma:
 
      npx prisma migrate dev --name init
 
 6. **Executar o Projeto**    
 
-   - npm run dev
+  - npm run dev
      ou
-   - yarn dev
+  - yarn dev
 
    O projeto estará disponível em http://localhost:3000.
