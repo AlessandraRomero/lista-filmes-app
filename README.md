@@ -19,7 +19,7 @@ Antes de começar, você precisará ter instalado em sua máquina:
 2. **Instalar Dependências**
    
    - npm install
-    # ou
+     ou
    - yarn install
 
 3. **Configurar o Banco de Dados PostgreSQL**
@@ -45,7 +45,7 @@ Antes de começar, você precisará ter instalado em sua máquina:
 6. **Executar o Projeto**    
 
    - npm run dev
-      # ou
+     ou
    - yarn dev
 
    O projeto estará disponível em http://localhost:3000.
