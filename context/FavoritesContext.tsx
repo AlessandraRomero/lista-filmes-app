@@ -17,7 +17,7 @@ export const FavoritesProvider: React.FC<{ children: React.ReactNode }> = ({ chi
   useEffect(() => {
     const fetchFavorites = async () => {
       const favoriteMovies = await getFavorites();
-      setFavorites(favoriteMovies.map((favorite) => favorite.movieId));
+      setFavorites(favoriteMovies);
     };
     fetchFavorites();
   }, []);
