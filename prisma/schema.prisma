@@ -7,10 +7,22 @@ generator client {
   provider = "prisma-client-js"
 }
 
-model Favorite {
-  id      Int @id @default(autoincrement())
-  movieId String
-
-  @@unique([movieId]) 
+model GuestSession {
+  id             Int      @id @default(autoincrement())
+  guestSessionId String   @unique
+  createdAt      DateTime @default(now())
+  
+  // Relacionamento com a tabela de favoritos
+  favorites      Favorite[]
 }
 
+model Favorite {
+  id             Int      @id @default(autoincrement())
+  movieId        String
+  guestSessionId String
+  createdAt      DateTime @default(now())
+
+  guestSession   GuestSession @relation(fields: [guestSessionId], references: [guestSessionId])
+  
+  @@unique([movieId, guestSessionId])
+}
