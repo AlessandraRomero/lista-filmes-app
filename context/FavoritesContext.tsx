@@ -1,39 +1,69 @@
-"use client"
-import { addFavorite, getFavorites, removeFavorite } from '@/app/services/favoritesService';
+"use client";
+import { addFavorite, createGuestSession, removeFavorite } from '@/app/services/favoritesService';
 import { createContext, useContext, useEffect, useState } from 'react';
-
 
 interface FavoritesContextType {
   favorites: string[];
-  addFavorite: (movieId: string) => void;
-  removeFavorite: (movieId: string) => void;
+  guestSessionId: string | null;
+  setGuestSessionId: (id: string) => void;
+  addFavorite: (movieId: string) => Promise<void>;
+  removeFavorite: (movieId: string) => Promise<void>;
 }
-
+interface Movie {
+  id: string;
+  title: string;
+}
 const FavoritesContext = createContext<FavoritesContextType | undefined>(undefined);
 
 export const FavoritesProvider: React.FC<{ children: React.ReactNode }> = ({ children }) => {
   const [favorites, setFavorites] = useState<string[]>([]);
+  const [guestSessionId, setGuestSessionId] = useState<string | null>(null);
 
   useEffect(() => {
-    const fetchFavorites = async () => {
-      const favoriteMovies = await getFavorites();
-      setFavorites(favoriteMovies);
+    const initializeSession = async () => {
+      try {
+        const session = await createGuestSession();
+        setGuestSessionId(session.guest_session_id);
+      } catch (error) {
+        console.error('Failed to create guest session:', error);
+      }
     };
-    fetchFavorites();
+
+    initializeSession();
   }, []);
 
+
   const handleAddFavorite = async (movieId: string) => {
-    await addFavorite(movieId);
-    setFavorites((prev) => [...prev, movieId]);
+    if (guestSessionId) {
+      try {
+        await addFavorite(guestSessionId, movieId);
+        setFavorites((prev) => [...prev, movieId]);
+      } catch (error) {
+        console.error('Failed to add favorite:', error);
+      }
+    }
   };
 
   const handleRemoveFavorite = async (movieId: string) => {
-    await removeFavorite(movieId);
-    setFavorites((prev) => prev.filter((id) => id !== movieId));
+    if (guestSessionId) {
+      try {
+        await removeFavorite(guestSessionId, movieId);
+        setFavorites((prev) => prev.filter((id) => id !== movieId));
+      } catch (error) {
+        console.error('Failed to remove favorite:', error);
+      }
+    }
   };
 
   return (
-    <FavoritesContext.Provider value={{ favorites, addFavorite: handleAddFavorite, removeFavorite: handleRemoveFavorite }}>
+    <FavoritesContext.Provider value={{ 
+      favorites, 
+      guestSessionId, 
+      setGuestSessionId, 
+      addFavorite: handleAddFavorite, 
+      removeFavorite: handleRemoveFavorite, 
+     // fetchFavorites 
+    }}>
       {children}
     </FavoritesContext.Provider>
   );

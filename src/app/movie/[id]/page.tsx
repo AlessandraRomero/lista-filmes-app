@@ -1,5 +1,4 @@
 'use client';
-
 import axios from 'axios';
 import { DateTime } from 'luxon';
 import Image from 'next/image';
@@ -48,7 +47,6 @@ const MovieDetails = () => {
       console.error('Error toggling favorite status:', error);
     }
   };
-
   if (error) {
     return <div className="text-red-500">Error: {error}</div>;
   }

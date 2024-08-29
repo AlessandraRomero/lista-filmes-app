@@ -1,13 +1,11 @@
 import Image from 'next/image';
-import { FaTrash } from 'react-icons/fa';
 import { Card } from './ui/card';
 
 interface FavoriteMovieItemProps {
   movie: any;
-  onRemove: (movieId: string) => void;
 }
 
-const FavoriteMovieItem: React.FC<FavoriteMovieItemProps> = ({ movie, onRemove }) => {
+const FavoriteMovieItem: React.FC<FavoriteMovieItemProps> = ({ movie }) => {
   return (
     <Card className="flex items-center shadow-lg bg-opacity-80  hover:bg-neutral-800 transition-all duration-300 rounded-xl p-4">
       <Image
@@ -21,14 +19,6 @@ const FavoriteMovieItem: React.FC<FavoriteMovieItemProps> = ({ movie, onRemove }
         <h2 className="text-xl font-bold text-white">{movie.title}</h2>
         <p className="text-white font-light">{movie.overview}</p>
       </div>
-      <button
-        onClick={() => onRemove(movie.id.toString())}
-        className="text-red-500 hover:text-red-700"
-        aria-label={`Remove ${movie.title} from favorites`}
-        title="Remover da lista de favoritos"
-      >
-        <FaTrash />
-      </button>
     </Card>
   );
 };
